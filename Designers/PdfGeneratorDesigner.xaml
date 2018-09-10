@@ -1,0 +1,111 @@
+﻿<sap:ActivityDesigner x:Class="CustomActivity.PdfGeneratorDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:c="clr-namespace:CustomActivity" 
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
+    xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation">
+
+    <sap:ActivityDesigner.Resources>
+        <ResourceDictionary x:Name="CSharpResourceDictionary">
+            <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
+         
+            <DataTemplate x:Key="Collapsed">
+                <StackPanel>
+                    <Label FontStyle="Italic">Double tap to view</Label>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="Expanded">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Width="auto"
+                           Margin="0,5"
+                           Grid.Column="0" 
+                           Grid.Row="0">Content:</Label>
+                    <sapv:ExpressionTextBox x:Name="contentTextBox" 
+                          HintText="Content"
+                          Expression="{Binding Path=ModelItem.Content, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="210"
+                          Margin="0,5"
+                          Grid.Row="0"
+                          Grid.Column="1"
+                          MaxLines="1" />
+                    
+
+                    <Label Width="auto"
+                           Margin="0,5"
+                           Grid.Column="0" 
+                           Grid.Row="1">Location:</Label>
+                    <sapv:ExpressionTextBox Name="locationTextBox"
+                          HintText="Location"
+                          Expression="{Binding Path=ModelItem.Location, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="210"
+                          Margin="0,5"
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          MaxLines="10" />
+
+
+                    <Label Width="auto"
+                           Margin="0,5"
+                           Grid.Column="0" 
+                           Grid.Row="2">FileName:</Label>
+                    <sapv:ExpressionTextBox Name="fileNameTextBox"
+                          HintText="File Name"
+                          Expression="{Binding Path=ModelItem.FileName, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:Object[]"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="210"
+                          Margin="0,5"
+                          Grid.Row="2"
+                          Grid.Column="1"
+                          MaxLines="1" />
+
+                    <Label Width="auto"
+                           Margin="0,5"
+                           Grid.Column="0" 
+                           Grid.Row="3">Title:</Label>
+                    <sapv:ExpressionTextBox x:Name="titleTextBox" 
+                          HintText="Title"
+                          Expression="{Binding Path=ModelItem.Title, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="210"
+                          Margin="0,5"
+                          Grid.Row="3"
+                          Grid.Column="1"
+                          MaxLines="1" />
+
+                </Grid>
+            </DataTemplate>
+            <Style x:Key="ExpandOrCollapsedStyle" TargetType="{x:Type ContentPresenter}">
+                <Setter Property="ContentTemplate" Value="{DynamicResource Collapsed}"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=ShowExpanded}" Value="true">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource Expanded}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+
+    </sap:ActivityDesigner.Resources>
+    <Grid>
+        <ContentPresenter Style="{DynamicResource ExpandOrCollapsedStyle}" Content="{Binding}" />
+    </Grid>
+</sap:ActivityDesigner>

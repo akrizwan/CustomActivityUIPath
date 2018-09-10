@@ -1,0 +1,112 @@
+﻿<sap:ActivityDesigner x:Class="CustomActivity.SendEmailDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
+                      xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation">
+    <sap:ActivityDesigner.Resources>
+        <ResourceDictionary>
+            <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
+        </ResourceDictionary>
+    </sap:ActivityDesigner.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Width="auto"
+               Margin="0,5"
+               Grid.Column="0" 
+               Grid.Row="0">Host:</Label>
+        <sapv:ExpressionTextBox x:Name="hostTextBox" 
+                          HintText="Script"
+                          Expression="{Binding Path=ModelItem.Host, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="110"
+                          Margin="0,5"
+                          Grid.Row="0"
+                          Grid.Column="1"/>
+
+        <Label Width="auto"
+               Margin="0,5"
+               Grid.Column="0" 
+               Grid.Row="1">From:</Label>
+        <sapv:ExpressionTextBox x:Name="fromTextBox" 
+                          HintText="From Address"
+                          Expression="{Binding Path=ModelItem.From, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="110"
+                          Margin="0,5"
+                          Grid.Row="1"
+                          Grid.Column="1"/>
+
+        <Label Width="auto"
+               Margin="0,5"
+               Grid.Column="0" 
+               Grid.Row="2">To:</Label>
+        <sapv:ExpressionTextBox x:Name="toTextBox" 
+                          HintText="To Address"
+                          Expression="{Binding Path=ModelItem.To, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="110"
+                          Margin="0,5"
+                          Grid.Row="2"
+                          Grid.Column="1"/>
+
+        <Label Width="auto"
+               Margin="0,5"
+               Grid.Column="0" 
+               Grid.Row="3">Subject:</Label>
+        <sapv:ExpressionTextBox x:Name="subjectTextBox" 
+                          HintText="Script"
+                          Expression="{Binding Path=ModelItem.Subject, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="110"
+                          Margin="0,5"
+                          Grid.Row="3"
+                          Grid.Column="1"/>
+
+        <Label Width="auto"
+               Margin="0,5"
+               Grid.Column="0" 
+               Grid.Row="4">Body:</Label>
+        <sapv:ExpressionTextBox x:Name="bodyTextBox" 
+                          HintText="Script"
+                          Expression="{Binding Path=ModelItem.Body, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="110"
+                          Margin="0,5"
+                          Grid.Row="4"
+                          Grid.Column="1"/>
+
+        <Label Width="auto"
+               Margin="0,5"
+               Grid.Column="0" 
+               Grid.Row="5">AttachmentLink:</Label>
+        <sapv:ExpressionTextBox x:Name="attachmentLinkTextBox" 
+                          HintText="Attachment Link"
+                          Expression="{Binding Path=ModelItem.AttachmentLink, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"
+                          ExpressionType="s:String"
+                          OwnerActivity="{Binding Path=ModelItem}"
+                          Width="110"
+                          Margin="0,5"
+                          Grid.Row="5"
+                          Grid.Column="1"/>
+    </Grid>
+</sap:ActivityDesigner>
